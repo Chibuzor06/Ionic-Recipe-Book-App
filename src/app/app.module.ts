@@ -1,3 +1,5 @@
+import { SignupPage } from './../pages/signup/signup';
+import { SigninPage } from './../pages/signin/signin';
 import { RecipesService } from './../services/recipes.service';
 import { ShoppingListService } from './../services/shopping-list.service';
 import { RecipePage } from './../pages/recipes/recipe/recipe';
@@ -20,7 +22,9 @@ import { MyApp } from './app.component';
     ShoppingListPage,
     RecipesPage,
     NewRecipePage,
-    RecipePage
+    RecipePage,
+    SigninPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { MyApp } from './app.component';
     ShoppingListPage,
     RecipesPage,
     NewRecipePage,
-    RecipePage
+    RecipePage,
+    SigninPage,
+    SignupPage
   ],
   providers: [
     StatusBar,

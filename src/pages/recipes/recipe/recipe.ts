@@ -21,6 +21,9 @@ export class RecipePage implements OnInit {
   ngOnInit() {
     this.index = this.navParams.get('index');
     this.recipe = this.recipesService.getRecipes()[this.index];
+    // if(!this.recipe.ingredients) {
+    //   this.recipe.ingredients = [];
+    // }
   }
 
   onEditRecipe() {

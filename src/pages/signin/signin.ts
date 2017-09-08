@@ -1,13 +1,7 @@
+import { AuthService } from './../../services/auth.service';
+import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SigninPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
+import { IonicPage, LoadingController, AlertController } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-signin',
@@ -15,11 +9,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SigninPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(private authService: AuthService,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
+  ) {}
+  onSignin(form: NgForm) {
+    const loading = this.loadingCtrl.create({
+      content: 'Signing you in...'
+    });
+    loading.present();
+    this.authService.signin(form.value.email, form.value.password)
+    .then(data => {
+      loading.dismiss();
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SigninPage');
+    })
+    .catch(error => {
+      loading.dismiss();
+      const alert = this.alertCtrl.create({
+        title: 'Signin failed',
+        message: error.message,
+        buttons: ['Ok']
+      });
+      alert.present();
+    });
   }
-
 }

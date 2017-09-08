@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Signup</ion-title>
     <ion-buttons left>
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu" large></ion-icon>
@@ -13,5 +13,20 @@
 
 
 <ion-content padding>
-
+<form #f="ngForm" (ngSubmit)="onSignup(f)">
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Mail</ion-label>
+      <ion-input type="email" ngModel name="email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password"
+        ngModel name="password"
+        required [minlength]="6">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block type="submit" [disabled]="!f.valid">Signup</button>
+</form>
 </ion-content>
